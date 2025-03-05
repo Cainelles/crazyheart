@@ -119,23 +119,24 @@ Global Styles
 */
 html,
 body {
-  background: #fff;
+  background: black;
   font-family: 'Roboto', sans-serif;
 }
 
+
 ::selection {
   background: #7453fc;
-  color: #fff;
+  color: black;
 }
 
 ::-moz-selection {
   background: #7453fc;
-  color: #fff;
+  color: black;
 }
 
 .border-button a {
   font-size: 14px;
-  color: #fff;
+  color: black;
   background-color: transparent;
   border: 1px solid #7453fc;
   padding: 12px 30px;
@@ -152,7 +153,7 @@ body {
 .border-button a:after {
   width: 78%;
   height: 2px;
-  background-color: #fff;
+  background-color: black;
   content: '';
   position: absolute;
   left: 50%;
@@ -162,12 +163,12 @@ body {
 
 .border-button a:hover {
   background-color: #7453fc;
-  color: #fff;
+  color: black;
 }
 
 .main-button a {
   font-size: 14px;
-  color: #fff;
+  color: black;
   background-color: #7453fc;
   border: 1px solid #7453fc;
   padding: 12px 30px;
@@ -811,6 +812,7 @@ Banner Style
 Categories & Collections Style
 --------------------------------------------- 
 */
+
 
 .categories-collections {
   background-image: url(../images/dark-bg.jpg);
