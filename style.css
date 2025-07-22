@@ -90,11 +90,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 0px; /* ou ajuste fino como 120px se ainda estiver encostando */
   background-color:#262626;
   padding: 20px 80px;
   box-shadow: 0 5px 15px red;
   z-index: 999;
-  position:fixed;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
