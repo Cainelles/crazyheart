@@ -87,10 +87,11 @@ body {
 /* header styles */
 
 #header {
+  flex-direction: column;
+  align-items: flex-start;
   position: fixed;
-  padding: 10px 80px;
+  padding: 20px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
   margin-top: 0px; /* ou ajuste fino como 120px se ainda estiver encostando */
   background-color:#262626;
@@ -128,7 +129,7 @@ body {
 }
 .header-list-icon a {
   color: white;
-  padding-left: 20px;
+  padding-left: 1px;
   transition: 0.3s ease;
 }
 .header-list-icon a:hover,
@@ -140,7 +141,7 @@ body {
   content: "";
   width: 30%;
   height: 2px;
-  background: #088178;
+  background: red;
   position: absolute;
   bottom: -4px;
   left: 20px;
@@ -572,13 +573,23 @@ span {
   #header {
     flex-direction: column;
     align-items: flex-start;
-    padding: 20px;
+    padding: 10px 20px; /* Reduzido */
+    gap: 5px; /* Adicionado para melhor empilhamento */
   }
 
   .header-list {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+  }
+
+  .header-list-nav ul a {
+    font-size: 14px; /* Reduzido */
+  }
+
+  .header-list-icon a {
+    padding-left: 1px; /* Reduzido */
+    font-size: 16px;
   }
 
   #hero h1, #hero h2 {
@@ -651,6 +662,19 @@ span {
 
   h4 {
     font-size: 18px;
+  }
+
+  #header {
+    padding: 8px 16px; /* Ainda menor em celulares */
+  }
+
+  .header-list-nav ul a {
+    font-size: 13px; /* Ainda menor */
+  }
+
+  .header-list-icon a {
+    padding-left: 8px;
+    font-size: 14px;
   }
 
   #hero {
