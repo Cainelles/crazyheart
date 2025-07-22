@@ -189,6 +189,7 @@ body {
   padding: 14px 65px 14px 65px;
 }
 
+
 /* feature section styles */
 
 #features {
@@ -458,9 +459,8 @@ span {
   padding: 75px;
   background-color: gray;
 }
-#footer div{
 
-}
+  
 #footer p, #footer a{
   color: #262626(109, 109, 109);
   text-decoration: none;
@@ -479,4 +479,134 @@ span {
 #footer .download img{
   border: 1px solid #08817969;
   border-radius: 7px;
+}
+
+/* Responsividade para tablets e celulares */
+
+@media (max-width: 1024px) {
+  #header {
+    padding: 20px 40px;
+  }
+
+  #hero {
+    padding: 0 40px;
+    height: 100vh;
+  }
+
+  #banners,
+  .product-section .pro-collection {
+    margin: 0 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  #header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .header-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  #hero h1, #hero h2 {
+    font-size: 40px;
+  }
+
+  #hero button {
+    width: 200px;
+    height: 50px;
+    font-size: 16px;
+    padding: 12px 50px;
+  }
+
+  #features {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  #banners .big-banners {
+    flex-direction: column;
+  }
+
+  #banners .big-banners div,
+  #banners .small-banners div {
+    min-width: 100%;
+  }
+
+  .product-section .pro-collection {
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+  }
+
+  #newsletter {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    height: auto;
+  }
+
+  #newsletter .form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #newsletter .form input,
+  #newsletter .form button {
+    width: 100%;
+    border-radius: 6px;
+    margin: 5px 0;
+  }
+
+  #footer {
+    flex-direction: column;
+    padding: 40px 20px;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 32px;
+  }
+
+  h2 {
+    font-size: 28px;
+  }
+
+  h4 {
+    font-size: 18px;
+  }
+
+  #hero {
+    padding: 0 20px;
+    height: auto;
+  }
+
+  #hero h4 {
+    font-size: 24px;
+  }
+
+  #hero h1, #hero h2 {
+    font-size: 36px;
+  }
+
+  #features .f-box {
+    width: 80%;
+  }
+
+  .product-section .product-cart {
+    width: 90%;
+  }
+
+  #banners .small-banners {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
