@@ -146,6 +146,26 @@ body {
 }
 
 /* home main styles */
+.preco {
+      font-size: 24px;
+      font-family: Arial, sans-serif;
+    }
+
+    .preco-antigo {
+      color: red;
+      text-decoration: line-through;
+      margin-right: 10px;
+    }
+
+    .preco-novo {
+      font-weight: bold;
+      animation: destaque 1s infinite alternate;
+    }
+
+    @keyframes destaque {
+      0% { color: #28a745; }
+      100% { color: #ffc107; }
+    }
 
 /* hero section styles */
 
@@ -523,6 +543,7 @@ span {
   border: 1px solid #08817969;
   border-radius: 7px;
 }
+
 
 /* Responsividade para tablets e celulares */
 
