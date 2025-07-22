@@ -87,15 +87,15 @@ body {
 /* header styles */
 
 #header {
+  position: fixed;
+  padding: 10px 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: 0px; /* ou ajuste fino como 120px se ainda estiver encostando */
   background-color:#262626;
-  padding: 20px 80px;
   box-shadow: 0 5px 15px red;
   z-index: 999;
-  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -173,14 +173,19 @@ body {
 #hero {
   background-image: url(images/hero4.png);
   width: 100%;
-  height:140vh;
+  min-height: 100vh;
   background-size: cover;
+  background-position: center;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  padding: 0 80px;
+
+  /* 👇 Aqui está a correção importante */
+  padding: 160px 20px 0 20px;
+  box-sizing: border-box;;
 }
+
 
 #hero h4 {
   padding-bottom: 15px;
@@ -554,8 +559,7 @@ span {
   }
 
   #hero {
-    padding: 0 40px;
-    height: 100vh;
+    padding: 160px 80px 0 80px;
   }
 
   #banners,
