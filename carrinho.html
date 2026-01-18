@@ -115,7 +115,7 @@ btnFinalizar.addEventListener("click", () => {
   mensagem += `%0A*VALOR TOTAL: R$ ${total.toFixed(2)}*`;
 
   // Seu número no WhatsApp no formato internacional
-  const numero = "55119999973370"; // substitua pelo seu número
+  const numero = "5519999973370"; // substitua pelo seu número
   const url = `https://api.whatsapp.com/send?phone=${numero}&text=${mensagem}`;
   window.open(url, "_blank");
 });
