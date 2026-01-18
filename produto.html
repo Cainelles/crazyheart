@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Produto</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+   <a href="index.html" class="logo">CRAZY<span>HEART</span></a>
+  <div class="carrinho-icon" id="icone-carrinho">
+    <img src="https://img.icons8.com/ios-filled/50/e60023/shopping-cart.png" alt="Carrinho">
+    <span id="quantidade-carrinho">0</span>
+  </div>
+</header>
+
+<main>
+  <section class="produto-detalhe">
+    <img id="imagem-principal" src="" alt="Produto">
+    <h1 id="nome"></h1>
+    <p id="descricao"></p>
+    <span id="preco"></span>
+
+    <div class="acoes">
+      <div id="botoes-tamanhos" class="tamanhos-container"></div>
+      <label>Qtd:
+        <input type="number" id="qtd-produto" value="1" min="1">
+      </label>
+      <button id="btn-adicionar">Adicionar ao Carrinho</button>
+    </div>
+  </section>
+</main>
+
+<script src="produtos.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const id = parseInt(params.get("id"));
+  const produto = produtos.find(p => p.id === id);
+
+  if (!produto) {
+    alert("Produto não encontrado!");
+    window.location.href = "index.html";
+  }
+
+  const imagemPrincipal = document.getElementById("imagem-principal");
+  const nomeEl = document.getElementById("nome");
+  const descricaoEl = document.getElementById("descricao");
+  const precoEl = document.getElementById("preco");
+  const qtdInput = document.getElementById("qtd-produto");
+  const btnAdicionar = document.getElementById("btn-adicionar");
+  const iconeCarrinho = document.getElementById("icone-carrinho");
+  const qtdCarrinho = document.getElementById("quantidade-carrinho");
+  const botoesContainer = document.getElementById("botoes-tamanhos");
+
+  // Carregar dados do produto
+  imagemPrincipal.src = produto.imagens[0];
+  nomeEl.innerText = produto.nome;
+  descricaoEl.innerText = produto.descricao;
+  precoEl.innerText = `R$ ${produto.preco.toFixed(2)}`;
+
+  // Tamanhos disponíveis
+  const tamanhos = produto.tamanhos || ["P", "M", "G", "GG"];
+  let tamanhoSelecionado = tamanhos[0]; // tamanho padrão
+
+  // Criar botões de tamanho
+  tamanhos.forEach(t => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.innerText = t;
+    btn.classList.add("btn-tamanho");
+    if(t === tamanhoSelecionado) btn.classList.add("selecionado");
+
+    btn.addEventListener("click", () => {
+      tamanhoSelecionado = t;
+      document.querySelectorAll(".btn-tamanho").forEach(b => b.classList.remove("selecionado"));
+      btn.classList.add("selecionado");
+    });
+
+    botoesContainer.appendChild(btn);
+  });
+
+  // Adicionar ao carrinho
+  btnAdicionar.addEventListener("click", () => {
+    const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+    const qtd = parseInt(qtdInput.value);
+
+    const idx = carrinho.findIndex(p => p.id === produto.id && p.tamanho === tamanhoSelecionado);
+    if(idx > -1){
+      carrinho[idx].qtd += qtd;
+    }else{
+      carrinho.push({
+        id: produto.id,
+        nome: produto.nome,
+        preco: produto.preco,
+        tamanho: tamanhoSelecionado,
+        qtd: qtd,
+        imagem: produto.imagens[0]
+      });
+    }
+
+    localStorage.setItem("carrinho", JSON.stringify(carrinho));
+    atualizarIconeCarrinho();
+    alert(`${produto.nome} adicionado ao carrinho!`);
+  });
+
+  // Atualizar ícone do carrinho
+  function atualizarIconeCarrinho() {
+    const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+    const totalItens = carrinho.reduce((acc, item) => acc + item.qtd, 0);
+    qtdCarrinho.innerText = totalItens;
+  }
+
+  if (iconeCarrinho) {
+    iconeCarrinho.addEventListener("click", () => {
+      window.location.href = "carrinho.html";
+    });
+  }
+
+  atualizarIconeCarrinho();
+</script>
+
+<style>
+  body {
+    font-family: 'Oswald', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+  }
+
+  header .logo span {
+    color: #e60023;
+  }
+
+  main {
+    padding: 20px;
+  }
+
+  .produto-detalhe {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .produto-detalhe img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    object-fit: contain;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+
+  .produto-detalhe h1 {
+    margin: 0;
+    font-size: 2em;
+    text-align: center;
+  }
+
+  .produto-detalhe p {
+    text-align: center;
+  }
+
+  .produto-detalhe span {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: #e60023;
+  }
+
+  .acoes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .acoes label {
+    font-weight: 600;
+  }
+
+  .acoes input {
+    padding: 5px;
+    margin-left: 5px;
+  }
+
+  .acoes button {
+    padding: 10px 20px;
+    background-color: #e60023;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .acoes button:hover {
+    background-color: #b5001b;
+  }
+
+  .tamanhos-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .btn-tamanho {
+    padding: 5px 12px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+
+  .btn-tamanho.selecionado {
+    background-color: #e60023;
+    color: #fff;
+    border-color: #b5001b;
+  }
+
+  @media (max-width: 500px) {
+    .produto-detalhe img {
+      max-width: 90%;
+    }
+  }
+</style>
+
+</body>
+</html>

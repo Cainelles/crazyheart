@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Carrinho | CRAZY HEART</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+ <a href="index.html" class="logo">CRAZY<span>HEART</span></a>
+    
+  <div class="carrinho-icon" id="icone-carrinho">
+    <img src="https://img.icons8.com/ios-filled/50/e60023/shopping-cart.png" alt="Carrinho">
+    <span id="quantidade-carrinho">0</span>
+  </div>
+</header>
+
+<section class="carrinho">
+  <h1>Meu Carrinho</h1>
+  <div id="itens-carrinho"></div>
+  <h2 id="total">Total: R$ 0,00</h2>
+  <button id="finalizar-compra">Finalizar Compra</button>
+</section>
+
+<script src="produtos.js"></script>
+<script>
+const itensCarrinhoDiv = document.getElementById("itens-carrinho");
+const totalEl = document.getElementById("total");
+const iconeCarrinho = document.getElementById("icone-carrinho");
+const qtdCarrinho = document.getElementById("quantidade-carrinho");
+const btnFinalizar = document.getElementById("finalizar-compra");
+
+function carregarCarrinho() {
+  let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+  itensCarrinhoDiv.innerHTML = "";
+  let total = 0;
+
+  carrinho.forEach((item, index) => {
+    total += item.preco * item.qtd;
+
+    const div = document.createElement("div");
+    div.classList.add("item-carrinho");
+    div.style.display = "flex";
+    div.style.gap = "15px";
+    div.style.marginBottom = "20px";
+    div.innerHTML = `
+      <img src="${item.imagem}" alt="${item.nome}" style="width:100px; height:auto; border:1px solid #ccc; border-radius:5px;">
+      <div class="info">
+        <h3>${item.nome}</h3>
+        <p>Tamanho: ${item.tamanho}</p>
+        <p>R$ ${item.preco.toFixed(2)}</p>
+        <label>Qtd: <input type="number" min="1" value="${item.qtd}" data-index="${index}"></label>
+        <button class="remover" data-index="${index}">Remover</button>
+      </div>
+    `;
+    itensCarrinhoDiv.appendChild(div);
+  });
+
+  totalEl.innerText = `Total: R$ ${total.toFixed(2)}`;
+  atualizarIconeCarrinho();
+}
+
+function atualizarIconeCarrinho() {
+  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+  const totalItens = carrinho.reduce((acc, item) => acc + item.qtd, 0);
+  qtdCarrinho.innerText = totalItens;
+}
+
+// Atualiza quantidade
+itensCarrinhoDiv.addEventListener("change", (e) => {
+  if(e.target.tagName === "INPUT") {
+    const idx = parseInt(e.target.dataset.index);
+    let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+    carrinho[idx].qtd = parseInt(e.target.value);
+    localStorage.setItem("carrinho", JSON.stringify(carrinho));
+    carregarCarrinho();
+  }
+});
+
+// Remove item
+itensCarrinhoDiv.addEventListener("click", (e) => {
+  if(e.target.classList.contains("remover")) {
+    const idx = parseInt(e.target.dataset.index);
+    let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+    carrinho.splice(idx, 1);
+    localStorage.setItem("carrinho", JSON.stringify(carrinho));
+    carregarCarrinho();
+  }
+});
+
+// Clique no ícone volta para home
+iconeCarrinho.addEventListener("click", () => {
+  window.location.href = "index.html";
+});
+
+// Finalizar compra - enviar WhatsApp
+btnFinalizar.addEventListener("click", () => {
+  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+  if(carrinho.length === 0) {
+    alert("Carrinho vazio!");
+    return;
+  }
+
+  let mensagem = "===CRAZYHEART===%0A";
+  let total = 0;
+
+  carrinho.forEach(item => {
+    mensagem += `%0AITEM: ${item.nome}%0AQUANTIDADE: ${item.qtd}%0ATAMANHO: ${item.tamanho}%0AVALOR: R$ ${(item.preco * item.qtd).toFixed(2)}%0A`;
+    total += item.preco * item.qtd;
+  });
+
+  mensagem += `%0A*VALOR TOTAL: R$ ${total.toFixed(2)}*`;
+
+  // Seu número no WhatsApp no formato internacional
+  const numero = "55119999973370"; // substitua pelo seu número
+  const url = `https://api.whatsapp.com/send?phone=${numero}&text=${mensagem}`;
+  window.open(url, "_blank");
+});
+
+// Inicializa carrinho
+carregarCarrinho();
+</script>
+
+<style>
+.carrinho {
+  padding: 60px;
+}
+
+.carrinho h1 {
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.item-carrinho {
+  background: #111;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.item-carrinho .info h3 {
+  margin:0;
+  color:#fff;
+}
+
+.item-carrinho .info p {
+  margin: 3px 0;
+  color:#ccc;
+}
+
+.item-carrinho input {
+  width:50px;
+  margin-left:5px;
+}
+
+.item-carrinho button {
+  background: #e60023;
+  border: none;
+  color: #fff;
+  padding: 5px 10px;
+  margin-top: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#finalizar-compra {
+  padding: 12px 20px;
+  background: #e60023;
+  color: #fff;
+  border:none;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+#finalizar-compra:hover {
+  background:#b5001b;
+}
+</style>
+
+</body>
+</html>

@@ -1,113 +1,45 @@
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Crazy Heart</title>
-      <link rel="stylesheet" href="style.css" />
-      <script
-        src="https://kit.fontawesome.com/0e53af926d.js"
-        crossorigin="anonymous"
-      ></script>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="icon" href="images/logo.png" type="image/png" />
-    </head>
-    <body>
-      <!--header section-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>CRAZY HEART</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
 
-      <header>
-        <div id="header">
-          <div class="header-logo">
-        <img src="images/logo.png" alt="Logo" width="50" />
-          </div>
-          <div class="header-list">
-            <nav class="header-list-nav">
-              <ul>
-                <li><a class="active" href="index.html">Inicio</a></li>
-                <li><a href="https://loja.infinitepay.io/crazy_heart">Catálogo</a></li>
-                <li><a href="https://www.instagram.com/crazyheart.001?igsh=Z3gzMGhieG5mOThj&utm_source=qr">Instagram</a></li>
-                <li><a href="duvidas.html">Duvidas e Feedbacks</a></li>
-              </ul>
-            </nav>
-            <div class="header-list-icon">
-              <a href="https://loja.infinitepay.io/crazy_heart"><i class="fa fa-bag-shopping"></i></a>
-            </div>
-          </div>
-        </div>
-      </header>
+<header>
+   <a href="index.html" class="logo">CRAZY<span>HEART</span></a>
+  <div class="carrinho-icon" id="icone-carrinho">
+    <img src="https://img.icons8.com/ios-filled/50/e60023/shopping-cart.png" alt="Carrinho">
+    <span id="quantidade-carrinho">0</span>
+  </div>
+</header>
 
-      <!--main section-->
+<section class="hero">
+  <h1>VISTA SUA PAIXÃO</h1>
+  <p>Camisas de time com qualidade</p>
+</section>
 
-      <main>
-        <section id="hero">
-          <h4>Crazy Heart</h4>
-          <h2>Oportunidade!</h2>
-          <h1>2 camisas da sua escolha!</h1>
-        <h1 class="preco">
-           Na compra de uma peita <table><span class="preco-antigo"></span></h1></table>
-           A SEGUNDA SAI COM: <table><span class="preco-novo">40% OFF</span></table>
-         </h1>
-          <p>Chama seus parceiros e vem com nois!</p>
-          <button><a href="https://loja.infinitepay.io/crazy_heart" style="color: inherit; text-decoration: none;">Catálogo</a></button>
-        </section>
+<!-- DESTAQUES DA SEMANA -->
+<section class="produtos">
+  <h2>DESTAQUES</h2>
+  <div class="grid" id="destaques"></div>
+</section>
 
+<!-- PRODUTOS -->
+<section class="produtos">
+  <h2>PRODUTOS</h2>
 
-        <section class="product-section" class="section-p1">
-      
-          </section>
+  <!-- Filtro de pesquisa -->
+  <input type="text" id="busca-produto" placeholder="Buscar camisa ou time..." class="busca-input">
 
+  <div class="grid" id="produtos-grid"></div>
+  <button id="ver-todos">Ver Todos</button>
+</section>
 
-        
-
-        <section id="newsletter">
-          <div class="newsletter-text">
-            <h3>Veja nosso Instagram</h3>
-            <h5>Novidades saem primeiro pra quem segue a gente no instagram da loja!</h5>
-            <h5>Veja nosso catalogo e caso prefira, entre em contato na nossa DM para finalizarmos seu pedido por lá!</h5>
-          </div>
-          <div class="form">
-            <button><a href="https://www.instagram.com/crazyheart.001?igsh=Z3gzMGhieG5mOThj&utm_source=qr" style="color: inherit; text-decoration: none;">Crazy Heart</a></button>
-          </div>
-        </section>
-
-
-         <section id="compra">
-          <h4>Crazy Heart</h4>
-          <h2>Catalogo completo pelo DRIVE</h2>
-          <h1>Pedido realizado em menos de 1 minuto</h1>
-          <p>Faça seu pedido pelo site ou pelo nosso instagram</p>
-          <button><a href="https://drive.google.com/drive/mobile/folders/1VmNDmpgDD5DMKyb9HZvcVd3-pjiPqUX6/1Fdvp7gcWQaNMv_zIRu1l8YpvZ8YaPSyY?sort=13&direction=a" style="color: inherit; text-decoration: none;">Catalogo</a></button>
-        </section>
-        
-      
-
-
-
-      </main>
-
-      <!--footer section-->
-
-      <footer>
-        <div id="footer">
-          <div class="contact">
-            <a href="index.html"><img src="images/logo.png" alt="Logo" width="100" /></a>
-            <br>
-            <h3>Endereço:</h3>
-            <address>
-              <p><b>Address:</b> Cosmopolis - SP, Brasil.</p>
-            </address>
-            <h3>Nos siga</h3>
-            <br> 
-            <div class="Redes Sociais">
-              <a href="https://www.instagram.com/crazyheart.001?igsh=Z3gzMGhieG5mOThj&utm_source=qr"><i class="fa-brands fa-instagram"></i></a>
-            </div>
-          </div>
-        
-          
-        </div>
-      </footer>
-
-      <script src="script.js"></script>
-    </body>
-  </html>
+<script src="produtos.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
