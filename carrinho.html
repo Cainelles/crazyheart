@@ -50,6 +50,7 @@ function carregarCarrinho() {
       <img src="${item.imagem}" alt="${item.nome}" style="width:100px; height:auto; border:1px solid #ccc; border-radius:5px;">
       <div class="info">
         <h3>${item.nome}</h3>
+
         <p>Tamanho: ${item.tamanho}</p>
         <p>R$ ${item.preco.toFixed(2)}</p>
         <label>Qtd: <input type="number" min="1" value="${item.qtd}" data-index="${index}"></label>
@@ -108,7 +109,7 @@ btnFinalizar.addEventListener("click", () => {
   let total = 0;
 
   carrinho.forEach(item => {
-    mensagem += `%0AITEM: ${item.nome}%0AQUANTIDADE: ${item.qtd}%0ATAMANHO: ${item.tamanho}%0AVALOR: R$ ${(item.preco * item.qtd).toFixed(2)}%0A`;
+    mensagem += `%0AITEM: ${item.nome}%0AID: ${item.id}%0AQUANTIDADE: ${item.qtd}%0ATAMANHO: ${item.tamanho}%0AVALOR: R$ ${(item.preco * item.qtd).toFixed(2)}%0A`;
     total += item.preco * item.qtd;
   });
 
